@@ -1,0 +1,44 @@
+<div>
+  <form [formGroup]="searchForm">
+    <div class="form-group">
+      <label for="countryCode" class="label-top">Please enter coutry name or code and select from matching countries:</label>
+      <input class="form-control" id="countryName" formControlName="countryName">
+      <div>
+        <div *ngFor="let country of resultCountries" (click)="selectCountry(country)" class="search-result">
+
+          {{country.name}}
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="clearfix">&nbsp;</div>
+
+  <div *ngIf="selectedCountry">
+    <h5>Selected Country:</h5>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tree Letter Code</th>
+                <th>Two Letter Code</th>
+                <th>Country Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{selectedCountry.alpha3_code}}</td>
+                <td>{{selectedCountry.alpha2_code}}</td>
+                <td>{{selectedCountry.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+<div *ngIf="errorMsg">
+  <div class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div>
+  <form>
+    <div class="form-group">
+      <label for="countryCode" class="label-top">Please enter a 3-letter country code:</label>
+      <input name="countryCode" class="form-control" id="countryCode" maxlength="3" [(ngModel)]="countryCode">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="search(countryCode)" [disabled]="!countryCode || countryCode.length!=3">Search</button>
+  </form>
+  <div class="clearfix">&nbsp;</div>
+  <div *ngIf="resultCountry">
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tree Letter Code</th>
+                <th>Two Letter Code</th>
+                <th>Country Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{resultCountry.alpha3_code}}</td>
+                <td>{{resultCountry.alpha2_code}}</td>
+                <td>{{resultCountry.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="clearfix">&nbsp;</div>
+
+<div *ngIf="errorMsg">
+  <div class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+</div>
