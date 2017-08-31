@@ -14,7 +14,7 @@ export class CountryService {
   getAllCountries(): Observable<any> {
     // example header (not necessary)
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/all')
       .map(this.extractData)
@@ -26,7 +26,7 @@ export class CountryService {
   searchByAlpha3Code(code: string): Observable<any> {
     // example header (not necessary)
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/iso3code/' + code)
       .map(this.extractData)
@@ -38,7 +38,7 @@ export class CountryService {
   searchByText(text: string): Observable<any> {
     // example header (not necessary)
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/search?text=' + text)
       .map(this.extractData)
