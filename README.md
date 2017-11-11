@@ -1,6 +1,6 @@
 # Angular4Country
 
-This is a small Angular 4 SPA developed with Angular CLI, and configured to run on .NET Core. The type-ahead tab demonstrates use of switchMap operator to make multiple http requests as a Rxjs observable stream.
+This is a small Angular 4 SPA developed with Angular CLI, and configured to run on .NET Core. The type-ahead tab demonstrates the use of switchMap operator to make multiple http requests as a Rxjs observable stream.
 
 ## Development server
 
