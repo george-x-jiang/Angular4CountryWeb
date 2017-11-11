@@ -6,8 +6,8 @@ import '../rxjs-extensions';
 @Injectable()
 export class CountryService {
 
-  // private readonly COUNTRY_SERVICE_URL = '/api/country';
-  private readonly COUNTRY_SERVICE_URL = 'http://services.groupkt.com/country';
+  private readonly COUNTRY_SERVICE_URL = '/api/country';
+  // private readonly COUNTRY_SERVICE_URL = 'http://services.groupkt.com/country';
 
   constructor(private http: Http) { }
 

@@ -1,4 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-body { margin: 4em; overflow-y:scroll;}
+body { margin: 3em; overflow-y:scroll;}
 a.active {background-color:#eee;}
-label.label-top {margin-top: 8px;}
+label.label-top {margin-top: 1em;}
