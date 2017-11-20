@@ -1,10 +1,7 @@
 {
-  "/api": {
+  "/country": {
     "target": "http://services.groupkt.com",
     "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    },
     "changeOrigin": true
   }
 }
