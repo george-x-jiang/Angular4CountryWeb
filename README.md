@@ -22,7 +22,7 @@ for a production build.
 
 ## Running .NET Core
 
-Run `dotnet run` to serve the build Angular app (with `ng build`) from .NET Core
+Run `dotnet run` to serve the built Angular app (with `ng build`) from .NET Core
 
 ## Running e2e tests
 
