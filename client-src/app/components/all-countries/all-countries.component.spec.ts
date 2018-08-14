@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AllCountriesComponent } from './all-countries.component';
 import { CountryService } from '../../services/country.service';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AllCountriesComponent', () => {
   let component: AllCountriesComponent;
@@ -11,7 +11,7 @@ describe('AllCountriesComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpModule,
+        HttpClientModule,
       ],
       declarations: [
         AllCountriesComponent

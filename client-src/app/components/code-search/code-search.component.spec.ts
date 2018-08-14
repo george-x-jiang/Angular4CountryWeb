@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CodeSearchComponent } from './code-search.component';
 import { CountryService } from '../../services/country.service';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 describe('CodeSearchComponent', () => {
@@ -12,7 +12,7 @@ describe('CodeSearchComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpModule,
+        HttpClientModule,
         FormsModule
       ],
       declarations: [
