@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-// import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import '../rxjs-extensions';
 import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class CountryService {
@@ -18,8 +18,10 @@ export class CountryService {
     headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/all')
-      .map(this.extractData)
-      .catch(this.handleError);
+      .pipe(
+        map(res => this.extractData(res)),
+        catchError(err => this.handleError(err))
+      );
 
     return observable;
   }
@@ -30,8 +32,10 @@ export class CountryService {
     headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/iso3code/' + code)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .pipe(
+        map(res => this.extractData(res)),
+        catchError(err => this.handleError(err))
+      );
 
     return observable;
   }
@@ -42,8 +46,10 @@ export class CountryService {
     headers.append('Accept', 'application/json');
     // create the request, store the `Observable` for subsequent subscribers
     const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/search?text=' + text)
-      .map(this.extractData)
-      .catch(this.handleError);
+      .pipe(
+        map(res => this.extractData(res)),
+        catchError(err => this.handleError(err))
+      );
 
     return observable;
   }
@@ -67,7 +73,7 @@ export class CountryService {
       errMsg = error.message ? error.message : error.toString();
     }
     // console.error(errMsg);
-    return Observable.throwError(errMsg);
+    return throwError(errMsg);
   }
 
 }

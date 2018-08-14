@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { CountryService } from '../../services/country.service';
-import { Observable } from 'rxjs/Observable';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-name-search',
@@ -24,15 +25,15 @@ export class NameSearchComponent implements OnInit {
     });
 
     this.searchForm.get(['countryName']).valueChanges
-      .debounceTime(300)
-      // ignore if next search term is same as previous
-      .distinctUntilChanged()
-      // switch to new observable each time
-      .switchMap(text => text ?
-        // return the http search observable
-        this.countryService.searchByText(text)
-        // or the observable of null value if no search text
-        : Observable.of<object[]>(null))
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap(text => text ?
+          // return the http search observable
+          this.countryService.searchByText(text)
+          // or the observable of null value if no search text
+          : of<object[]>(null))
+      )
       .subscribe(
         results => {
           this.resultCountries = results;
