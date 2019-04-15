@@ -7,7 +7,7 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class CountryService {
 
-  private readonly COUNTRY_SERVICE_URL = '/country';
+  private readonly COUNTRY_SERVICE_URL = '/api/country';
   // private readonly COUNTRY_SERVICE_URL = 'http://services.groupkt.com/country';
 
   constructor(private http: HttpClient) { }
@@ -16,42 +16,39 @@ export class CountryService {
     // example header (not necessary)
     const headers = new Headers();
     headers.append('Accept', 'application/json');
+
     // create the request, store the `Observable` for subsequent subscribers
-    const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/all')
+    return this.http.get(this.COUNTRY_SERVICE_URL + '/get/all')
       .pipe(
         map(res => this.extractData(res)),
         catchError(err => this.handleError(err))
       );
-
-    return observable;
   }
 
   searchByAlpha3Code(code: string): Observable<any> {
     // example header (not necessary)
     const headers = new Headers();
     headers.append('Accept', 'application/json');
+
     // create the request, store the `Observable` for subsequent subscribers
-    const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/get/iso3code/' + code)
+    return this.http.get(this.COUNTRY_SERVICE_URL + '/get/iso3code/' + code)
       .pipe(
         map(res => this.extractData(res)),
         catchError(err => this.handleError(err))
       );
-
-    return observable;
   }
 
   searchByText(text: string): Observable<any> {
     // example header (not necessary)
     const headers = new Headers();
     headers.append('Accept', 'application/json');
+
     // create the request, store the `Observable` for subsequent subscribers
-    const observable = this.http.get(this.COUNTRY_SERVICE_URL + '/search?text=' + text)
+    return this.http.get(this.COUNTRY_SERVICE_URL + '/search?text=' + text)
       .pipe(
         map(res => this.extractData(res)),
         catchError(err => this.handleError(err))
       );
-
-    return observable;
   }
 
   private extractData(res: any) {

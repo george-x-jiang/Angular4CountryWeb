@@ -19,13 +19,8 @@ namespace Angular4CountryWeb
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.MapWhen(IsApiPath, builder => builder.RunProxy(new ProxyOptions
-            {
-                Scheme = "http",
-                Host = "services.groupkt.com",
-                Port = "80"
-            }));
-            
+            app.UseMiddleware<ReverseProxyMiddleware>();
+
             app.Use(async (context, next) =>
             {
                 await next();
